@@ -1,15 +1,26 @@
+// var containsDuplicate = function(nums) {
+//     while(nums.length > 1){
+//         let num = nums[0];
+//         nums.shift()
+//         // console.log(nums,num)
+//         if(nums.indexOf(num) !== -1){
+//             // console.log(true)
+//             return true;
+//         }
+//     }
+//     // console.log(false)
+//     return false
+// };
+//看到leetcode网友评论 新增加一种方法
 var containsDuplicate = function(nums) {
-    while(nums.length > 1){
-        let num = nums[0];
-        nums.shift()
-        // console.log(nums,num)
-        if(nums.indexOf(num) !== -1){
-            // console.log(true)
-            return true;
-        }
+    var arr = new Set(nums);
+    if(arr.size < nums.length){
+        console.log(true)
+        return true
+    }else{
+        console.log(false)
+        return false
     }
-    // console.log(false)
-    return false
 };
 containsDuplicate([1,2,3,1]);
 containsDuplicate([1,2,3,4]);
