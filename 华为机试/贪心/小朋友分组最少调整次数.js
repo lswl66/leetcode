@@ -10,6 +10,7 @@ function main(before, after) {
     });
 
     const groupSequence = before.map(item => groupMap.get(item));
+    console.log(groupSequence);
 
     let count = 0;
     for (let i = 0; i < groupSequence.length; i++) {
@@ -18,7 +19,7 @@ function main(before, after) {
         const thirdGroup = groupSequence[i + 2];
 
         // 如果没有更多元素可比较，直接结束
-        if (nextGroup === undefined || (currentGroup === nextGroup && thirdGroup === undefined)) {
+        if ((currentGroup === nextGroup && thirdGroup === undefined)) {
             break;
         }
 
@@ -29,6 +30,7 @@ function main(before, after) {
             i += 2; // 三个连续同组，跳过
         } else if (currentGroup === nextGroup && currentGroup !== thirdGroup) {
             i += 1; // 两个连续同组，跳过
+            // count++;
         }
     }
 
@@ -47,9 +49,13 @@ function main(before, after) {
 //     const groupOrder = before.map(student => groupMapping[student]);
 
 //     const groupPositions = Array.from({ length: groupCount }, () => []);
+
+//     console.log(groupOrder);
+
 //     for (let i = 0; i < groupOrder.length; i++) {
 //         groupPositions[groupOrder[i]].push(i);
 //     }
+//     console.log(groupPositions);
 
 //     for (const positions of groupPositions) {
 //         if (positions.length === 3) {
@@ -65,26 +71,26 @@ function main(before, after) {
 //         }
 //     }
 
-//     // const encounteredGroups = new Set();
-//     // let overlapAdjustments = 0;
-//     // for (const group of groupOrder) {
-//     //     if (!encounteredGroups.has(group)) {
-//     //         encounteredGroups.add(group);
-//     //     } else {
-//     //         overlapAdjustments++;
-//     //     }
-//     // }
+//     const encounteredGroups = new Set();
+//     let overlapAdjustments = 0;
+//     for (const group of groupOrder) {
+//         if (!encounteredGroups.has(group)) {
+//             encounteredGroups.add(group);
+//         } else {
+//             overlapAdjustments++;
+//         }
+//     }
 
-//     // count = Math.min(count, overlapAdjustments);
+//     count = Math.min(count, overlapAdjustments);
 
 //     return count
 // }
 
 
+console.log(main([8, 9, 7, 5, 6, 3, 2, 1, 4], [7, 8, 9, 4, 2, 1, 3, 5, 6])); // 0
 
-// 1
-console.log(main([4, 2, 8, 5, 3, 6, 1, 9, 7], [6, 3, 1, 2, 4, 8, 7, 9, 5]));
-// 3
-console.log(main([4, 2, 8, 5, 3, 6, 1, 9, 7], [6, 3, 4, 2, 1, 8, 7, 9, 5]));
-// 0
-console.log(main([8, 9, 7, 5, 6, 3, 2, 1, 4], [7, 8, 9, 4, 2, 1, 3, 5, 6]));
+console.log(main([4, 2, 8, 5, 3, 6, 1, 9, 7], [6, 3, 1, 2, 4, 8, 7, 9, 5])); // 1
+
+console.log(main([4, 2, 8, 5, 3, 6, 1, 9, 7], [6, 3, 4, 2, 1, 8, 7, 9, 5])); // 3
+
+console.log(main([7, 9, 8, 5, 6, 4, 2, 1, 3], [7, 8, 9, 4, 2, 1, 3, 5, 6])); // 1
